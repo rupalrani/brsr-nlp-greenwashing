@@ -1,0 +1,13 @@
+SOURCE: Tata Steel Limited, Business Responsibility and Sustainability Report
+URL: https://www.tatasteel.com/media/23967/brsr.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Heavy Industry (Steel) | FISCAL YEAR: FY2024-25
+
+Assurance: PwC (Price Waterhouse & Co CA LLP), Reasonable on BRSR Core standalone; voluntary consolidated disclosure also provided. Reporting methodology per SEBI circulars (Nov 2024, Dec 2024, Mar 2025 updates). This is the 3rd BRSR edition.
+
+Key subsidiaries: Tata Steel Nederland BV and Tata Steel UK Limited are in significant restructuring for transition to low-emission steelmaking -- explicitly flagged as altering the consolidation perimeter in this year's report. FY23-24 disclosures restated due to boundary changes.
+
+Leadership statement (from filing): the company describes decarbonisation as "a deliberate choice with shared enthusiasm" (paraphrased). ESG roadmap serves as "a compass and a catalyst" (brief quote, under 15 words). The report describes moving "from intent to impact" (quoted phrase under 15 words) and highlights AI-enabled systems, digitalisation, and automation.
+
+Transition context: Steel is the hardest-to-abate sector in the corpus. The restructuring of UK and Netherlands operations for green steelmaking (electric arc furnaces) is the dominant ESG story for Tata Steel globally and directly material to its BRSR disclosures.
+
+Specificity note: The restatement of FY23-24 comparatives with reasons given (boundary change + ISF guidelines Dec 2024) is among the more transparent methodological disclosures in this corpus. The named industry standard changes (SEBI Circular SEBI/HO/CFD/PoD2/CIR/P/0155 dated 11 Nov 2024) provide an audit trail.
