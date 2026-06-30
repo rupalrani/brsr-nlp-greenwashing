@@ -1,0 +1,9 @@
+SOURCE: Wipro Limited, Business Responsibility and Sustainability Report
+URL: https://www.wipro.com/content/dam/nexus/en/investor/corporate-governance/stock-exchange-filing/submission-of-business-responsibility-and-sustainability-report-for-fy-2024-25-21-jun-2025.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: IT Services | FISCAL YEAR: FY2024-25
+
+CIN L32102KA1945PLC020800. Reporting boundary: consolidated (changed from standalone PY; data not fully comparable). Assurance: Deloitte Haskins & Sells LLP, Reasonable on BRSR Core. Business: IT services and consulting, 99.7% of turnover. Exports: 97.7% of turnover. Total employees 235,415 (permanent 225,306; Male 62.85%, Female 37.13%; no workers category). Attrition FY25: 14.81% (14.81% male, 13.52% female). Board gender: 2/9 female (22.22%). CSR turnover INR 672,928 million.
+
+Material issues (13 items across ethical governance, workforce, cybersecurity, environmental stewardship, customer centricity, innovation, community, supply chain). Net-zero GHG emissions commitment: by 2040. Company is part of Transform to Net Zero initiative and WEF. Specific privacy metric: 850+ applications completed Privacy Impact Assessments as part of GDPR compliance. Attrition rate disclosed 3 years: FY25 14.81%, FY24 13.95%, FY23 19.21%.
+
+Specificity note: Report is substantially vague on environmental metrics in Section A. Detailed environmental data is in the Sustainability Report referenced but not in the BRSR document itself. The specificity ratio of this extract is therefore expected to be lower than reports that embed quantitative KPIs directly in the BRSR. Net-zero 2040 target and GDPR 850+ PIA are notable exceptions -- concrete, dated, and verifiable.
