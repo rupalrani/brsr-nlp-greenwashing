@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRSR ESG Greenwashing Risk Screener</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg:       #0D1B2A;
+    --surface:  #162437;
+    --surface2: #1E3150;
+    --border:   #2A4470;
+    --mint:     #06D6A0;
+    --mint-dim: rgba(6,214,160,0.12);
+    --blue:     #4895EF;
+    --text:     #E8F0F8;
+    --text-dim: #8BA3BE;
+    --red:      #FF6B6B;
+    --amber:    #FFB830;
+    --green:    #06D6A0;
+    --red-bg:   rgba(255,107,107,0.15);
+    --amber-bg: rgba(255,184,48,0.15);
+    --green-bg: rgba(6,214,160,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #0D1B2A 0%, #162D4A 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .header-left h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .header-left h1 span { color: var(--mint); }
+  .header-left p {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 3px;
+    font-weight: 300;
+  }
+  .header-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: var(--mint-dim);
+    color: var(--mint);
+    border: 1px solid rgba(6,214,160,0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .header-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── Layout ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: calc(100vh - 73px);
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sidebar-section-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .filter-btn {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .filter-btn:hover { border-color: var(--mint); color: var(--text); }
+  .filter-btn.active {
+    background: var(--mint-dim);
+    border-color: var(--mint);
+    color: var(--mint);
+  }
+  .filter-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Gauge ── */
+  .gauge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .gauge-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .gauge-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1;
+  }
+  .gauge-tier {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  /* ── Main Content ── */
+  .main { padding: 24px; overflow-y: auto; }
+
+  /* ── KPI row ── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    border-radius: 3px 0 0 3px;
+  }
+  .kpi-card.k-mint::before  { background: var(--mint); }
+  .kpi-card.k-red::before   { background: var(--red); }
+  .kpi-card.k-amber::before { background: var(--amber); }
+  .kpi-card.k-blue::before  { background: var(--blue); }
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text);
+  }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ── Chart cards ── */
+  .chart-row { display: grid; gap: 16px; margin-bottom: 16px; }
+  .chart-row-1 { grid-template-columns: 1fr; }
+  .chart-row-2 { grid-template-columns: 1.4fr 1fr; }
+  .chart-row-3 { grid-template-columns: 1fr 1fr; }
+
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .chart-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .chart-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .chart-container { position: relative; }
+
+  /* ── Detail panel ── */
+  .detail-card {
+    background: var(--surface2);
+    border: 1px solid var(--mint);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .detail-card.visible { display: block; }
+  .detail-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--mint);
+    margin-bottom: 12px;
+  }
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .detail-item label {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .detail-item .dval {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .data-table th {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(42,68,112,0.4);
+    font-size: 12px;
+    color: var(--text);
+  }
+  .data-table tr:hover td { background: rgba(6,214,160,0.04); }
+  .data-table td:first-child { font-weight: 500; }
+  .tier-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .tier-HIGH   { background: var(--red-bg);   color: var(--red);   border: 1px solid rgba(255,107,107,0.3); }
+  .tier-MEDIUM { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(255,184,48,0.3);  }
+  .tier-LOW    { background: var(--green-bg); color: var(--green); border: 1px solid rgba(6,214,160,0.3);  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+  /* ── Footnote ── */
+  .footnote {
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .footnote a { color: var(--mint); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="header">
+  <div class="header-left">
+    <h1>BRSR <span>Greenwashing</span> Risk Screener</h1>
+    <p>NLP analysis of 15 Indian BRSR filings · FY2022–25 · 5 sectors · Composite GRS model</p>
+  </div>
+  <div class="header-meta">
+    <span class="header-badge">n = 15 companies</span>
+    <span class="header-badge">Pearson r (SR, GRS) = −0.725 **</span>
+    <span class="header-badge">All data: public BRSR filings</span>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-section-label">Filter by Sector</div>
+      <button class="filter-btn active" onclick="setFilter('All')" id="btn-All">
+        <span class="filter-dot" style="background:#8BA3BE"></span>All Sectors
+      </button>
+      <button class="filter-btn" onclick="setFilter('IT')" id="btn-IT">
+        <span class="filter-dot" style="background:#4895EF"></span>IT Services
+      </button>
+      <button class="filter-btn" onclick="setFilter('Banking')" id="btn-Banking">
+        <span class="filter-dot" style="background:#06D6A0"></span>Banking
+      </button>
+      <button class="filter-btn" onclick="setFilter('Cement')" id="btn-Cement">
+        <span class="filter-dot" style="background:#FFB830"></span>Cement
+      </button>
+      <button class="filter-btn" onclick="setFilter('Heavy Industry')" id="btn-Heavy Industry">
+        <span class="filter-dot" style="background:#FF6B6B"></span>Heavy Industry
+      </button>
+      <button class="filter-btn" onclick="setFilter('Pharma')" id="btn-Pharma">
+        <span class="filter-dot" style="background:#C77DFF"></span>Pharma
+      </button>
+      <button class="filter-btn" onclick="setFilter('Auto')" id="btn-Auto">
+        <span class="filter-dot" style="background:#FF9F43"></span>Auto
+      </button>
+    </div>
+
+    <!-- Gauge -->
+    <div>
+      <div class="sidebar-section-label" style="margin-bottom:12px">Mean GRS — Selection</div>
+      <div class="gauge-wrap">
+        <canvas id="gaugeCanvas" width="160" height="90"></canvas>
+        <div class="gauge-value" id="gaugeValue">57.3</div>
+        <div class="gauge-tier tier-HIGH" id="gaugeTier">HIGH RISK</div>
+        <div style="font-size:10px;color:var(--text-dim);margin-top:6px;text-align:center">
+          Scale: 0 (low risk) → 100 (high risk)
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div>
+      <div class="sidebar-section-label">Risk Tiers</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:2px;background:var(--red);flex-shrink:0"></div>
+          <span style="font-size:11px;color:var(--text-dim)">HIGH — GRS &gt; 60</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:2px;background:var(--amber);flex-shrink:0"></div>
+          <span style="font-size:11px;color:var(--text-dim)">MEDIUM — GRS 30–60</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:2px;background:var(--green);flex-shrink:0"></div>
+          <span style="font-size:11px;color:var(--text-dim)">LOW — GRS &lt; 30</span>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:10px;background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2);border-radius:6px">
+        <div style="font-size:10px;color:var(--red);font-weight:600;letter-spacing:0.5px;margin-bottom:4px">⚠ KEY FINDING</div>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.5">No company scored LOW. The clean band is empty across all 15 reports.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main ── -->
+  <div class="main">
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi-card k-mint">
+        <div class="kpi-label">Companies Analysed</div>
+        <div class="kpi-value" id="kpi-n">15</div>
+        <div class="kpi-sub">5 sectors · FY2022–25</div>
+      </div>
+      <div class="kpi-card k-red">
+        <div class="kpi-label">HIGH Risk Reports</div>
+        <div class="kpi-value" id="kpi-high">6</div>
+        <div class="kpi-sub" id="kpi-high-pct">40% of corpus</div>
+      </div>
+      <div class="kpi-card k-amber">
+        <div class="kpi-label">Mean GRS</div>
+        <div class="kpi-value" id="kpi-grs">57.3</div>
+        <div class="kpi-sub" id="kpi-grs-sub">Corpus-wide (0–100 scale)</div>
+      </div>
+      <div class="kpi-card k-blue">
+        <div class="kpi-label">Mean Specificity Ratio</div>
+        <div class="kpi-value" id="kpi-sr">0.093</div>
+        <div class="kpi-sub">Fraction of sentences with quantified claim</div>
+      </div>
+    </div>
+
+    <!-- Detail panel (shows on bar click) -->
+    <div class="detail-card" id="detail-panel">
+      <h3 id="dp-title">Company Detail</h3>
+      <div class="detail-grid">
+        <div class="detail-item"><label>GRS</label><span class="dval" id="dp-grs"></span></div>
+        <div class="detail-item"><label>Risk Tier</label><span class="dval" id="dp-tier"></span></div>
+        <div class="detail-item"><label>Specificity Ratio</label><span class="dval" id="dp-sr"></span></div>
+        <div class="detail-item"><label>AVVR</label><span class="dval" id="dp-avvr"></span></div>
+        <div class="detail-item"><label>LM Sentiment</label><span class="dval" id="dp-lm"></span></div>
+        <div class="detail-item"><label>Boilerplate Density</label><span class="dval" id="dp-bd"></span></div>
+        <div class="detail-item"><label>Flesch Reading Ease</label><span class="dval" id="dp-fre"></span></div>
+        <div class="detail-item"><label>Assurance Type</label><span class="dval" id="dp-assurance" style="font-size:13px"></span></div>
+      </div>
+    </div>
+
+    <!-- Row 1: GRS bar chart (full width) -->
+    <div class="chart-row chart-row-1" style="margin-bottom:16px">
+      <div class="chart-card">
+        <div class="chart-title">Composite Greenwashing Risk Score (GRS) by Company</div>
+        <div class="chart-sub">Click any bar to see full company detail · Colour = risk tier · Dashed lines = tier thresholds (30 / 60)</div>
+        <div class="chart-container" style="height:280px">
+          <canvas id="grsChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Sector avg + Scatter -->
+    <div class="chart-row chart-row-2">
+      <div class="chart-card">
+        <div class="chart-title">Sector Average GRS</div>
+        <div class="chart-sub">Manufacturing sectors show the widest ambition–specificity gap</div>
+        <div class="chart-container" style="height:240px">
+          <canvas id="sectorChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Specificity Ratio vs. GRS</div>
+        <div class="chart-sub">r = −0.725, p = 0.002 · Higher SR → lower greenwashing risk</div>
+        <div class="chart-container" style="height:240px">
+          <canvas id="scatterChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: LM Sentiment + AVVR -->
+    <div class="chart-row chart-row-3" style="margin-top:16px">
+      <div class="chart-card">
+        <div class="chart-title">LM Finance Sentiment by Sector</div>
+        <div class="chart-sub">Loughran-McDonald (2011) positive vs. negative word density</div>
+        <div class="chart-container" style="height:220px">
+          <canvas id="sentimentChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Action-Vague Verb Ratio (AVVR) by Company</div>
+        <div class="chart-sub">0 = all aspirational language · 1 = all action-oriented</div>
+        <div class="chart-container" style="height:220px">
+          <canvas id="avvrChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Full data table -->
+    <div class="chart-card" style="margin-top:16px">
+      <div class="chart-title">Full Results Table</div>
+      <div class="chart-sub">All 15 BRSR reports · Click column headers to sort</div>
+      <table class="data-table" id="resultsTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">Company ↕</th>
+            <th onclick="sortTable(1)">Sector ↕</th>
+            <th onclick="sortTable(2)">FY ↕</th>
+            <th onclick="sortTable(3)">SR ↕</th>
+            <th onclick="sortTable(4)">AVVR ↕</th>
+            <th onclick="sortTable(5)">LM Net ↕</th>
+            <th onclick="sortTable(6)">BD ↕</th>
+            <th onclick="sortTable(7)">FRE ↕</th>
+            <th onclick="sortTable(8)">GRS ↕</th>
+            <th onclick="sortTable(9)">Tier ↕</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="footnote">
+      <strong>Methodology:</strong> GRS = (1−SR)×40 + (1−AVVR)×25 + BD×20 + LM_neg×15 &nbsp;|&nbsp;
+      SR = Specificity Ratio (fraction of sentences with a quantified claim) &nbsp;|&nbsp;
+      AVVR = Action-Vague Verb Ratio &nbsp;|&nbsp; BD = Boilerplate Density &nbsp;|&nbsp;
+      LM = Loughran-McDonald (2011) Finance Sentiment &nbsp;|&nbsp; FRE = Flesch Reading Ease &nbsp;|&nbsp;
+      LDA: 5 topics, sklearn (Blei et al., 2003) &nbsp;|&nbsp;
+      <strong>Limitation:</strong> n=15; Kruskal-Wallis p=0.188 (not significant). Findings are descriptive and directional only. &nbsp;|&nbsp;
+      <a href="https://github.com/[yourusername]/brsr-nlp-greenwashing" target="_blank">GitHub Repository</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Real data from pipeline ────────────────────────────────────
+const DATA = [
+  {company:"Infosys",       sector:"IT",             fy:"FY2023-24", exchange:"BSE/NSE/NYSE", assurance:"Reasonable",        SR:0.0656, AVVR:0.5455, BD:0.037,  LM_pos:0.0194, LM_neg:0.0097, LM_net:0.0097,  FRE:24.74, GRS:64.0, tier:"HIGH"},
+  {company:"TCS",           sector:"IT",             fy:"FY2023-24", exchange:"BSE/NSE",      assurance:"Reasonable",        SR:0.1250, AVVR:0.6667, BD:0.0093, LM_pos:0.0118, LM_neg:0.0059, LM_net:0.0059,  FRE:39.32, GRS:52.4, tier:"MEDIUM"},
+  {company:"Wipro",         sector:"IT",             fy:"FY2024-25", exchange:"BSE/NSE/NYSE", assurance:"Reasonable",        SR:0.1111, AVVR:0.6667, BD:0.0,    LM_pos:0.0062, LM_neg:0.0,    LM_net:0.0062,  FRE:32.16, GRS:43.9, tier:"MEDIUM"},
+  {company:"ICICI Bank",    sector:"Banking",        fy:"FY2024-25", exchange:"BSE/NSE",      assurance:"Reasonable",        SR:0.2857, AVVR:0.8000, BD:0.0,    LM_pos:0.0214, LM_neg:0.0,    LM_net:0.0214,  FRE:39.13, GRS:33.6, tier:"MEDIUM"},
+  {company:"HDFC Bank",     sector:"Banking",        fy:"FY2022-23", exchange:"BSE/NSE",      assurance:"Partial",           SR:0.0,    AVVR:0.0000, BD:0.0,    LM_pos:0.0123, LM_neg:0.0,    LM_net:0.0123,  FRE:28.68, GRS:65.0, tier:"HIGH"},
+  {company:"SBI",           sector:"Banking",        fy:"FY2023-24", exchange:"BSE/NSE",      assurance:"GRI-mapped",        SR:0.0769, AVVR:0.3333, BD:0.0,    LM_pos:0.0127, LM_neg:0.0,    LM_net:0.0127,  FRE:30.45, GRS:53.6, tier:"MEDIUM"},
+  {company:"UltraTech",     sector:"Cement",         fy:"FY2023-24", exchange:"BSE/NSE",      assurance:"Reasonable",        SR:0.0588, AVVR:0.0000, BD:0.0064, LM_pos:0.0149, LM_neg:0.010,  LM_net:0.005,   FRE:23.60, GRS:77.8, tier:"HIGH"},
+  {company:"Ambuja Cements",sector:"Cement",         fy:"FY2024-25", exchange:"BSE/NSE",      assurance:"Reasonable",        SR:0.0,    AVVR:0.6667, BD:0.0,    LM_pos:0.0052, LM_neg:0.0052, LM_net:0.0,     FRE:29.48, GRS:56.1, tier:"MEDIUM"},
+  {company:"Tata Steel",    sector:"Heavy Industry", fy:"FY2024-25", exchange:"BSE/NSE",      assurance:"Reasonable",        SR:0.0,    AVVR:0.0000, BD:0.0,    LM_pos:0.0099, LM_neg:0.005,  LM_net:0.005,   FRE:24.11, GRS:72.5, tier:"HIGH"},
+  {company:"Cipla",         sector:"Pharma",         fy:"FY2023-24", exchange:"BSE/NSE/Lux",  assurance:"Reasonable",        SR:0.0588, AVVR:0.0000, BD:0.0,    LM_pos:0.0213, LM_neg:0.0106, LM_net:0.0106,  FRE:29.29, GRS:77.6, tier:"HIGH"},
+  {company:"Sun Pharma",    sector:"Pharma",         fy:"FY2024-25", exchange:"BSE/NSE",      assurance:"Internal-only(P6)", SR:0.0,    AVVR:0.5000, BD:0.0,    LM_pos:0.0219, LM_neg:0.0146, LM_net:0.0073,  FRE:31.33, GRS:67.5, tier:"HIGH"},
+  {company:"Dr. Reddy's",   sector:"Pharma",         fy:"FY2024-25", exchange:"BSE/NSE/NYSE", assurance:"Reasonable",        SR:0.2000, AVVR:0.7500, BD:0.0,    LM_pos:0.0121, LM_neg:0.0182, LM_net:-0.0061, FRE:33.66, GRS:53.2, tier:"MEDIUM"},
+  {company:"Tata Motors",   sector:"Auto",           fy:"FY2023-24", exchange:"BSE/NSE",      assurance:"Reasonable",        SR:0.0909, AVVR:0.5000, BD:0.0,    LM_pos:0.0,    LM_neg:0.0,    LM_net:0.0,     FRE:35.44, GRS:48.9, tier:"MEDIUM"},
+  {company:"Maruti Suzuki", sector:"Auto",           fy:"FY2024-25", exchange:"BSE/NSE",      assurance:"Not stated",        SR:0.1667, AVVR:0.5000, BD:0.0224, LM_pos:0.0114, LM_neg:0.0,    LM_net:0.0114,  FRE:4.24,  GRS:46.3, tier:"MEDIUM"},
+  {company:"M&M",           sector:"Auto",           fy:"FY2023-24", exchange:"BSE/NSE",      assurance:"Not stated",        SR:0.0909, AVVR:0.5000, BD:0.0197, LM_pos:0.0303, LM_neg:0.0,    LM_net:0.0303,  FRE:0.20,  GRS:49.3, tier:"MEDIUM"},
+];
+
+const SECTOR_COLORS = {
+  "IT":             "#4895EF",
+  "Banking":        "#06D6A0",
+  "Cement":         "#FFB830",
+  "Heavy Industry": "#FF6B6B",
+  "Pharma":         "#C77DFF",
+  "Auto":           "#FF9F43",
+};
+const TIER_COLORS = { HIGH:"#FF6B6B", MEDIUM:"#FFB830", LOW:"#06D6A0" };
+
+let currentFilter = "All";
+let grsChartInst, sectorChartInst, scatterChartInst, sentimentChartInst, avvrChartInst;
+let tableSortDir = {};
+
+// ── Gauge drawing ─────────────────────────────────────────────
+function drawGauge(val) {
+  const canvas = document.getElementById("gaugeCanvas");
+  const ctx = canvas.getContext("2d");
+  const cx = 80, cy = 82, r = 65;
+  ctx.clearRect(0, 0, 160, 90);
+
+  const startAngle = Math.PI;
+  const endAngle   = 2 * Math.PI;
+
+  // Background arc
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, startAngle, endAngle);
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = "rgba(42,68,112,0.5)";
+  ctx.lineCap = "round";
+  ctx.stroke();
+
+  // Coloured arc
+  const pct = Math.min(Math.max(val, 0), 100) / 100;
+  const fillEnd = startAngle + pct * Math.PI;
+  const col = val >= 60 ? "#FF6B6B" : val >= 30 ? "#FFB830" : "#06D6A0";
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, startAngle, fillEnd);
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = col;
+  ctx.lineCap = "round";
+  ctx.stroke();
+
+  // Needle
+  const angle = startAngle + pct * Math.PI;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx + (r - 18) * Math.cos(angle), cy + (r - 18) * Math.sin(angle));
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = "#FFFFFF";
+  ctx.lineCap = "round";
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fill();
+}
+
+// ── Filter ────────────────────────────────────────────────────
+function setFilter(sector) {
+  currentFilter = sector;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("btn-" + sector).classList.add("active");
+  document.getElementById("detail-panel").classList.remove("visible");
+  updateAll();
+}
+
+function filtered() {
+  return currentFilter === "All" ? DATA : DATA.filter(d => d.sector === currentFilter);
+}
+
+// ── KPI update ────────────────────────────────────────────────
+function updateKPIs(data) {
+  const n     = data.length;
+  const high  = data.filter(d => d.tier === "HIGH").length;
+  const avgGRS = data.reduce((s, d) => s + d.GRS, 0) / n;
+  const avgSR  = data.reduce((s, d) => s + d.SR,  0) / n;
+
+  document.getElementById("kpi-n").textContent    = n;
+  document.getElementById("kpi-high").textContent  = high;
+  document.getElementById("kpi-high-pct").textContent = Math.round(high/n*100) + "% of selection";
+  document.getElementById("kpi-grs").textContent   = avgGRS.toFixed(1);
+  document.getElementById("kpi-grs-sub").textContent = "Selection mean (0–100 scale)";
+  document.getElementById("kpi-sr").textContent    = avgSR.toFixed(3);
+
+  drawGauge(avgGRS);
+  document.getElementById("gaugeValue").textContent = avgGRS.toFixed(1);
+  const gtier = avgGRS >= 60 ? "HIGH RISK" : avgGRS >= 30 ? "MEDIUM RISK" : "LOW RISK";
+  const el = document.getElementById("gaugeTier");
+  el.textContent = gtier;
+  el.className = "gauge-tier " + (avgGRS >= 60 ? "tier-HIGH" : avgGRS >= 30 ? "tier-MEDIUM" : "tier-LOW");
+}
+
+// ── GRS Bar Chart ─────────────────────────────────────────────
+function updateGRSChart(data) {
+  const sorted = [...data].sort((a,b) => b.GRS - a.GRS);
+  const labels = sorted.map(d => d.company);
+  const values = sorted.map(d => d.GRS);
+  const colors = sorted.map(d => TIER_COLORS[d.tier]);
+  const borders= sorted.map(d => TIER_COLORS[d.tier]);
+
+  const cfg = {
+    type: "bar",
+    data: { labels, datasets: [{
+      data: values, backgroundColor: colors.map(c => c + "BB"),
+      borderColor: colors, borderWidth: 1.5, borderRadius: 4,
+    }]},
+    options: {
+      indexAxis: "y",
+      responsive: true, maintainAspectRatio: false,
+      onClick: (evt, els) => {
+        if (els.length) showDetail(sorted[els[0].index]);
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => ` GRS: ${ctx.parsed.x.toFixed(1)}  |  Tier: ${sorted[ctx.dataIndex].tier}`
+        }},
+        annotation: { annotations: {
+          line30: { type:"line", xMin:30, xMax:30, borderColor:"rgba(6,214,160,0.5)", borderWidth:1.5, borderDash:[5,5] },
+          line60: { type:"line", xMin:60, xMax:60, borderColor:"rgba(255,107,107,0.5)", borderWidth:1.5, borderDash:[5,5] },
+        }}
+      },
+      scales: {
+        x: { min:0, max:100, grid:{color:"rgba(42,68,112,0.4)"}, ticks:{color:"#8BA3BE",font:{size:11}},
+              title:{display:true,text:"Greenwashing Risk Score (GRS)",color:"#8BA3BE",font:{size:11}} },
+        y: { grid:{display:false}, ticks:{color:"#E8F0F8",font:{size:11,family:"Inter"},
+              callback: (v,i) => labels[i] }
+        }
+      }
+    }
+  };
+  if (grsChartInst) grsChartInst.destroy();
+  grsChartInst = new Chart(document.getElementById("grsChart"), cfg);
+}
+
+// ── Sector Avg Chart ─────────────────────────────────────────
+function updateSectorChart(data) {
+  const sectors = [...new Set(data.map(d => d.sector))];
+  const avgGRS  = sectors.map(s => {
+    const grp = data.filter(d => d.sector === s);
+    return +(grp.reduce((a,d) => a+d.GRS, 0) / grp.length).toFixed(1);
+  });
+  const sorted  = sectors.map((s,i) => ({s, g:avgGRS[i]})).sort((a,b) => b.g-a.g);
+
+  const cfg = {
+    type: "bar",
+    data: { labels: sorted.map(x => x.s), datasets: [{
+      data: sorted.map(x => x.g),
+      backgroundColor: sorted.map(x => (SECTOR_COLORS[x.s]||"#8BA3BE")+"99"),
+      borderColor:     sorted.map(x => SECTOR_COLORS[x.s]||"#8BA3BE"),
+      borderWidth: 1.5, borderRadius: 5,
+    }]},
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend:{display:false},
+        tooltip:{callbacks:{label: ctx => ` Mean GRS: ${ctx.parsed.y.toFixed(1)}`}} },
+      scales: {
+        x: { grid:{display:false}, ticks:{color:"#8BA3BE",font:{size:11}} },
+        y: { min:0, max:100, grid:{color:"rgba(42,68,112,0.4)"},
+             ticks:{color:"#8BA3BE",font:{size:11}} }
+      }
+    }
+  };
+  if (sectorChartInst) sectorChartInst.destroy();
+  sectorChartInst = new Chart(document.getElementById("sectorChart"), cfg);
+}
+
+// ── Scatter Chart ─────────────────────────────────────────────
+function updateScatterChart(data) {
+  const points = data.map(d => ({x: d.SR, y: d.GRS, label: d.company, sector: d.sector}));
+  const cfg = {
+    type: "scatter",
+    data: { datasets: [{
+      data: points,
+      backgroundColor: points.map(p => (SECTOR_COLORS[p.sector]||"#8BA3BE")+"CC"),
+      borderColor:     points.map(p => SECTOR_COLORS[p.sector]||"#8BA3BE"),
+      pointRadius: 7, pointHoverRadius: 9, borderWidth: 1.5,
+    }]},
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => ` ${ctx.raw.label}  SR:${ctx.parsed.x.toFixed(3)}  GRS:${ctx.parsed.y.toFixed(1)}`
+        }}
+      },
+      scales: {
+        x: { title:{display:true,text:"Specificity Ratio (SR)",color:"#8BA3BE",font:{size:11}},
+             grid:{color:"rgba(42,68,112,0.4)"}, ticks:{color:"#8BA3BE",font:{size:10}} },
+        y: { title:{display:true,text:"GRS",color:"#8BA3BE",font:{size:11}}, min:0, max:100,
+             grid:{color:"rgba(42,68,112,0.4)"}, ticks:{color:"#8BA3BE",font:{size:10}} }
+      }
+    }
+  };
+  if (scatterChartInst) scatterChartInst.destroy();
+  scatterChartInst = new Chart(document.getElementById("scatterChart"), cfg);
+}
+
+// ── LM Sentiment Chart ────────────────────────────────────────
+function updateSentimentChart(data) {
+  const sectors = [...new Set(data.map(d => d.sector))];
+  const posAvg  = sectors.map(s => {
+    const g = data.filter(d => d.sector===s);
+    return +(g.reduce((a,d)=>a+d.LM_pos,0)/g.length*1000).toFixed(2);
+  });
+  const negAvg  = sectors.map(s => {
+    const g = data.filter(d => d.sector===s);
+    return +(g.reduce((a,d)=>a+d.LM_neg,0)/g.length*1000).toFixed(2);
+  });
+  const cfg = {
+    type: "bar",
+    data: { labels: sectors, datasets: [
+      { label:"Positive", data:posAvg, backgroundColor:"rgba(6,214,160,0.7)", borderColor:"#06D6A0", borderWidth:1, borderRadius:4 },
+      { label:"Negative", data:negAvg, backgroundColor:"rgba(255,107,107,0.7)",borderColor:"#FF6B6B", borderWidth:1, borderRadius:4 },
+    ]},
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend:{labels:{color:"#8BA3BE",font:{size:11},boxWidth:12}},
+        tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y}‰`}} },
+      scales: {
+        x: { grid:{display:false}, ticks:{color:"#8BA3BE",font:{size:10}} },
+        y: { grid:{color:"rgba(42,68,112,0.4)"}, ticks:{color:"#8BA3BE",font:{size:10}},
+             title:{display:true,text:"Word density (‰)",color:"#8BA3BE",font:{size:10}} }
+      }
+    }
+  };
+  if (sentimentChartInst) sentimentChartInst.destroy();
+  sentimentChartInst = new Chart(document.getElementById("sentimentChart"), cfg);
+}
+
+// ── AVVR Chart ────────────────────────────────────────────────
+function updateAVVRChart(data) {
+  const sorted = [...data].sort((a,b) => b.AVVR - a.AVVR);
+  const cfg = {
+    type: "bar",
+    data: { labels: sorted.map(d => d.company), datasets: [{
+      data: sorted.map(d => d.AVVR),
+      backgroundColor: sorted.map(d => (SECTOR_COLORS[d.sector]||"#8BA3BE")+"AA"),
+      borderColor:     sorted.map(d => SECTOR_COLORS[d.sector]||"#8BA3BE"),
+      borderWidth:1.5, borderRadius:4,
+    }]},
+    options: {
+      indexAxis:"y", responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false},
+        tooltip:{callbacks:{label:ctx => ` AVVR: ${ctx.parsed.x.toFixed(3)}`}} },
+      scales: {
+        x: { min:0, max:1, grid:{color:"rgba(42,68,112,0.4)"},
+             ticks:{color:"#8BA3BE",font:{size:10}} },
+        y: { grid:{display:false}, ticks:{color:"#E8F0F8",font:{size:10}} }
+      }
+    }
+  };
+  if (avvrChartInst) avvrChartInst.destroy();
+  avvrChartInst = new Chart(document.getElementById("avvrChart"), cfg);
+}
+
+// ── Data Table ────────────────────────────────────────────────
+function updateTable(data) {
+  const sorted = [...data].sort((a,b) => b.GRS - a.GRS);
+  const body   = document.getElementById("tableBody");
+  body.innerHTML = sorted.map(d => `
+    <tr>
+      <td>${d.company}</td>
+      <td><span style="color:${SECTOR_COLORS[d.sector]||'#8BA3BE'}">${d.sector}</span></td>
+      <td class="mono">${d.fy}</td>
+      <td class="mono">${d.SR.toFixed(3)}</td>
+      <td class="mono">${d.AVVR.toFixed(3)}</td>
+      <td class="mono" style="color:${d.LM_net<0?'#FF6B6B':d.LM_net>0?'#06D6A0':'#8BA3BE'}">${d.LM_net>=0?'+':''}${d.LM_net.toFixed(4)}</td>
+      <td class="mono">${d.BD.toFixed(4)}</td>
+      <td class="mono" style="color:${d.FRE<20?'#FF6B6B':d.FRE<40?'#FFB830':'#06D6A0'}">${d.FRE.toFixed(1)}</td>
+      <td class="mono" style="font-weight:700;color:${TIER_COLORS[d.tier]}">${d.GRS.toFixed(1)}</td>
+      <td><span class="tier-pill tier-${d.tier}">${d.tier}</span></td>
+    </tr>`).join("");
+}
+
+// ── Detail panel ──────────────────────────────────────────────
+function showDetail(d) {
+  document.getElementById("dp-title").textContent    = d.company + " — Detail View";
+  document.getElementById("dp-grs").textContent      = d.GRS.toFixed(1);
+  document.getElementById("dp-grs").style.color      = TIER_COLORS[d.tier];
+  document.getElementById("dp-tier").textContent     = d.tier;
+  document.getElementById("dp-tier").style.color     = TIER_COLORS[d.tier];
+  document.getElementById("dp-sr").textContent       = d.SR.toFixed(3);
+  document.getElementById("dp-avvr").textContent     = d.AVVR.toFixed(3);
+  document.getElementById("dp-lm").textContent       = (d.LM_net >= 0 ? "+" : "") + d.LM_net.toFixed(4);
+  document.getElementById("dp-bd").textContent       = d.BD.toFixed(4);
+  document.getElementById("dp-fre").textContent      = d.FRE.toFixed(1);
+  document.getElementById("dp-assurance").textContent = d.assurance;
+  document.getElementById("detail-panel").classList.add("visible");
+  document.getElementById("detail-panel").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+// ── Sort table ────────────────────────────────────────────────
+function sortTable(colIdx) {
+  const keys = ["company","sector","fy","SR","AVVR","LM_net","BD","FRE","GRS","tier"];
+  const key  = keys[colIdx];
+  tableSortDir[colIdx] = !(tableSortDir[colIdx]);
+  const dir  = tableSortDir[colIdx] ? 1 : -1;
+  const f    = filtered();
+  f.sort((a,b) => {
+    const av = a[key], bv = b[key];
+    return typeof av === "number" ? (av - bv) * dir : av.localeCompare(bv) * dir;
+  });
+  const body = document.getElementById("tableBody");
+  body.innerHTML = f.map(d => `
+    <tr>
+      <td>${d.company}</td>
+      <td><span style="color:${SECTOR_COLORS[d.sector]||'#8BA3BE'}">${d.sector}</span></td>
+      <td class="mono">${d.fy}</td>
+      <td class="mono">${d.SR.toFixed(3)}</td>
+      <td class="mono">${d.AVVR.toFixed(3)}</td>
+      <td class="mono" style="color:${d.LM_net<0?'#FF6B6B':d.LM_net>0?'#06D6A0':'#8BA3BE'}">${d.LM_net>=0?'+':''}${d.LM_net.toFixed(4)}</td>
+      <td class="mono">${d.BD.toFixed(4)}</td>
+      <td class="mono" style="color:${d.FRE<20?'#FF6B6B':d.FRE<40?'#FFB830':'#06D6A0'}">${d.FRE.toFixed(1)}</td>
+      <td class="mono" style="font-weight:700;color:${TIER_COLORS[d.tier]}">${d.GRS.toFixed(1)}</td>
+      <td><span class="tier-pill tier-${d.tier}">${d.tier}</span></td>
+    </tr>`).join("");
+}
+
+// ── Main update ───────────────────────────────────────────────
+function updateAll() {
+  const data = filtered();
+  updateKPIs(data);
+  updateGRSChart(data);
+  updateSectorChart(data);
+  updateScatterChart(data);
+  updateSentimentChart(data);
+  updateAVVRChart(data);
+  updateTable(data);
+}
+
+// ── Init ──────────────────────────────────────────────────────
+Chart.defaults.color = "#8BA3BE";
+Chart.defaults.font.family = "Inter";
+updateAll();
+</script>
+</body>
+</html>
