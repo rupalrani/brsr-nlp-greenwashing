@@ -1,0 +1,12 @@
+SOURCE: HDFC Bank Limited, Business Responsibility and Sustainability Report
+URL: https://www.sesgovernance.com/pdf/1691216996_HDFC-BANK_BRSR_2022-23.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Banking & Finance | FISCAL YEAR: FY2022-23
+EXTRACTION NOTE: HDFC Bank's 2023-24 AR links through a complex domain; FY22-23 BRSR is used for this corpus entry with year noted in the manifest.
+
+India's largest private-sector bank. Branches (as of 31 March 2023): included with ATMs 17,765. Reporting on standalone basis. Employees: data available in integrated report. Turnover rate externally assured; workers disclosure not in scope of assurance. 
+
+The bank serves a diverse customer base including individuals, government, MSMEs, large corporates. Key specificity markers: 1,686 of the bank's branches have ramps for differently-abled access (named count). Employee data externally assured. Occupational health and safety: prioritizes augmenting standards via ISO standards. Board has diverse skills; stakeholder mapping done based on level of interest, influence, and impact.
+
+Key text: Bank maps stakeholders by relevance and develops engagement strategies aligned to their needs. Processes in place for consultation between stakeholders and the Board on economic, environmental, and social topics.
+
+Specificity note: Private-sector banking BRSR tends to be process-heavy and outcomes-light in environmental sections. The differentiated assurance scope (employee data assured; worker data not in scope) is itself a transparency marker, worth noting as positive disclosure quality.
