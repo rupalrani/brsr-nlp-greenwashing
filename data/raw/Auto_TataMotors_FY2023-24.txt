@@ -1,0 +1,11 @@
+SOURCE: Tata Motors Limited, Business Responsibility and Sustainability Report
+URL: https://www.tatamotors.com/financials/79-ar-html/pdf/tata-motor-IAR-2023-24-BRSR.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Automobiles | FISCAL YEAR: FY2023-24
+
+CIN L28920MH1945PLC004520. Reporting boundary: standalone (TML Commercial Vehicle Business only). Assurance: KPMG Assurance and Consulting Services LLP, Reasonable on BRSR Core. Business: Automobile Manufacturing (98%). Employees 9,172 + Workers 28,397 = 37,569 total workforce. Female employees 9% (784/9,172). Female workers 11% (3,195/28,397). Board 3/8 female (37.5% -- highest in this corpus). Exports: only 4% of turnover (predominantly domestic). Turnover INR 71,878 crore. Net worth INR 28,812 crore.
+
+Material Issues: 1. Carbon Emissions & Climate Change (Risk AND Opportunity) -- Net Zero GHG by 2045 for CV; 2040 for PV; RE100 before end of decade; interim SBTi-aligned targets being set; 2. Environmental regulations & compliance (Risk); 3. Supply Chain Sustainability (Risk & Opportunity) -- Sustainable Supply Chain Initiative since 2017, AIKYAM platform 2023; 4. IT and Cyber Security (Risk). Note: Tata Motors is one of only two companies in this corpus that explicitly frames climate as BOTH a risk AND an opportunity in the same row of the material issues table.
+
+Employee data shows notably low female representation in workers (2% permanent). The note on double materiality assessment (FY24-25) in the later filing indicates a methodological evolution year-over-year -- tracked in the manifest.
+
+Specificity note: Net Zero targets are sector-differentiated (CV vs PV business) and the 2017 initiative for supply-chain sustainability has a verifiable launch date. RE100 commitment before end of decade is time-bounded. These are among the more specific climate disclosures in the Auto sector.
