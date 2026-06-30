@@ -1,0 +1,13 @@
+SOURCE: Maruti Suzuki India Limited (MSIL), Business Responsibility and Sustainability Report
+URL: https://nsearchives.nseindia.com/corporate/MARUTIASHISH_05082025211028_STXintimation_BRSR_2025.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Automobiles | FISCAL YEAR: FY2024-25
+
+India's largest passenger vehicle manufacturer. Production capacity: 2.35 million units/year. FY24: record sales surpassing 2 million units. Key sustainability officer: Mr. Hisashi Takeuchi, MD & CEO (DIN: 07806180). Dedicated Director for Sustainability: Mr. Kenichiro Toyofuku, Executive Director (DIN: 08619076). Board has Risk Management Committee overseeing ESG risk.
+
+Multi-technology decarbonisation approach disclosed: BEVs (battery electric), hybrid vehicles, biofuels, and flex-fuel -- described as addressing India's net zero ambitions. This multi-pathway approach is explicitly contrasted with single-fuel dependency.
+
+End-of-life vehicles (ELV): Maruti Suzuki Toyotsu India Pvt Ltd (JV with Toyota Tsusho Group) operates ELV recycling at Noida. Hazardous materials (used oil, coolants, automotive fluids, refrigerants) drained per safety protocols.
+
+Key constraint: MSIL is predominantly a domestic company (4% exports) and its supply chain and manufacturing are India-based, making its Scope 3 numbers different in structure from an export-focused manufacturer.
+
+Material topics reference: The BRSR cross-references "Material topics under Value Creation Approach section of the Annual Integrated Report FY 2024-25 on page 94" rather than embedding them -- same cross-reference pattern as Cipla, reducing in-document specificity.
