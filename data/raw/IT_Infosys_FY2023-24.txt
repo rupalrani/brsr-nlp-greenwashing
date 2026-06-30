@@ -1,0 +1,49 @@
+SOURCE: Infosys Limited, Business Responsibility and Sustainability Report, Integrated Annual Report 2023-24
+URL: https://www.infosys.com/investors/reports-filings/annual-report/annual/documents/2023-24/business-responsibility-and-sustainability-report.pdf
+ACCESS DATE: 2026-06-21
+SECTOR: IT Services
+FISCAL YEAR: FY2023-24 (April 2023 - March 2024)
+NOTE: Text captured = first ~12,000 tokens of the standalone BRSR PDF (assurance statement, Section A General Disclosures, Section B Management & Process Disclosures, and the start of Section C Principle-wise disclosures P1-P3). Full document is longer; this is a consistent, bounded extract applied to all 15 reports in this corpus.
+---BEGIN EXTRACTED TEXT---
+152 Infosys Integrated Annual Report 2023-24
+INDEPENDENT PRACTITIONER'S REASONABLE ASSURANCE REPORT ON IDENTIFIED 
+SUSTAINABILITY INFORMATION IN INFOSYS LIMITED'S BUSINESS RESPONSIBILITY AND 
+SUSTAINABILITY REPORT
+To the Board of Directors 
+of INFOSYS LIMITED
+1. We have undertaken to perform reasonable assurance engagement, for INFOSYS LIMITED (the "Company") vide our engagement 
+letter dated March 25, 2024 in respect of the agreed Sustainability Information listed below (the "Identified Sustainability Information" 
+or "BRSR Core indicators") in accordance with the Criteria stated in paragraph 3 below. This Sustainability Information is included in 
+the Business Responsibility and Sustainability Report (the "BRSR" or the "Report") of the Integrated Annual Report (the "IAR") of the 
+Company for the year ended March 31, 2024. This engagement was conducted by our multidisciplinary team including assurance 
+practitioners, environmental engineers and specialists.
+Infosys has always placed sustainability at the heart of 
+its business approach. Our ability to fulfill and exceed 
+our responsibilities to our stakeholders is a testament to 
+our commitment. We have balanced our business success 
+with an unwavering focus on exemplary governance and 
+responsiveness to the needs of the environment and society. 
+As an early proponent of responsible business, we readily 
+embraced our commitment to integrate Environmental, 
+Social and Governance (ESG) factors into our operations. 
+We adopted the GRI Framework in 2008 and in fiscal 2013, 
+we were among the first companies to publish the Business 
+Responsibility Report (BRR). 
+The BRSR follows the National Guidelines on Responsible 
+Business Conduct (NGRBC) principles on the social, 
+environmental and economic responsibilities of business. 
+Section A: General Disclosure I Company details 1. Corporate Identity Number (CIN) of the Listed Entity L85110KA1981PLC013115 2. Name of the Listed Entity Infosys Limited 3. Year of incorporation July 02, 1981 4. Registered office address Electronics City, Hosur Road, Bengaluru, Karnataka 560 100, India 9. Financial year for which reporting is being done April 2023 - March 2024 14. Name of assurance provider Deloitte Haskins & Sells LLP 15. Type of assurance obtained BRSR core indicators - Reasonable Select BRSR indicators - Reasonable / Limited
+II Products / services 16. Details of business activities (accounting for 90% of the turnover) Software and IT consulting (GICS classification - Information Technology - Software and Services) Software application development and maintenance, and IT consulting. 94.5
+III Operations 18. Number of locations: National 55 offices, 265 total. International 210.
+IV Employees 20. Total employees 3,40,687. Permanent 3,17,240 (Male 60.7%, Female 39.3%).
+26. Material issues table (paraphrased from the filing, not quoted): the company names six issues -- two environmental (climate change as a cost/compliance risk; client-facing climate advisory work as a revenue opportunity), two societal (employee experience as a retention risk; "Tech for Good" platforms in e-governance/health/education as a growth opportunity), and two governance-related (cybersecurity/data-privacy breach risk; security leadership as a competitive opportunity). Each is tagged with a stated financial direction (positive or negative) but none is quantified in rupee terms in this section.
+Section B: Management and process disclosures. 1a. Whether your entity's policy/policies cover each principle and its core elements of the NGRBCs: Yes for all 9 principles. 1b. Has the policy been approved by the Board: Yes for P1-P5, P7-P9; No for P6.
+5. Specific commitments, goals and targets set by the entity with defined timelines: In 2020, we became carbon neutral, 30 years ahead of the timeline set by the Paris Agreement. In October 2020, we launched our ESG vision and ambitions for 2030.
+7. Statement by director responsible for the Business Responsibility Report (CEO Salil Parekh, paraphrased): commits the company to a "sustainable and socially responsible business" (quoted phrase, under 15 words) and points to the ESG Vision 2030 programme covering governance, an inclusive workplace, and community/technology-for-good initiatives.
+Section C: Principle-wise performance disclosure. PRINCIPLE 1: Businesses should conduct and govern themselves with integrity, and in a manner that is ethical, transparent and accountable.
+4. Does the entity have an anti-corruption or anti-bribery policy? Yes. Our Code of Conduct and Ethics complies with the legal requirements of applicable laws and regulations, including anti-bribery, anti-corruption and ethical handling of conflicts of interest.
+PRINCIPLE 2: Businesses should provide goods and services in a manner that is sustainable and safe. 1. Percentage of R&D and capex investments in specific technologies to improve environmental and social impacts: R&D 20.7% FY24 (26.7% FY23). Capex 3.4% FY24 (3.1% FY23). Details: Education, training and assessment of employees to upskill and reskill. Efficient equipment for cooling, lighting, renewable energy, water management, waste management and sustainable material
+2a. Does the company have procedures in place for sustainable sourcing? Yes. We require suppliers to accept the Supplier Code of Conduct, which is based on the UNGC Principles.
+PRINCIPLE 3: Businesses should respect and promote the well-being of all employees, including those in their value chains. 1a. Details of measures for the well-being of employees: 100% covered by health insurance, accident insurance for permanent employees.
+1c. Spending on measures towards well-being of employees and workers as % of total revenue: 1.1% FY24 (1.2% FY23).
+---END EXTRACTED TEXT---
