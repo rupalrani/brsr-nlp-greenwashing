@@ -1,0 +1,11 @@
+SOURCE: UltraTech Cement Limited, Business Responsibility and Sustainability Report
+URL: https://nsearchives.nseindia.com/corporate/ULTRACEMCO_22072024225320_BRSRSE_signed.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Heavy Industry (Cement) | FISCAL YEAR: FY2023-24
+
+CIN L26940MH2000PLC128420. Reporting boundary: consolidated for most sections; Principle 6 (environment) limited to cement manufacturing plants and bulk terminals only. Assurance: BDO India LLP, Reasonable on BRSR Core. Business: Manufacturing of Clinker, Cement and RMC (~98% of turnover). Plants: 24 Integrated + 29 Grinding + 1 White Cement + 307 RMC Units nationally. Exports: only 0.5% of turnover (domestic market-oriented). Total employees 24,221 + 58,883 workers = 83,104 total workforce. Female employees 6%, female workers 0.22% -- among the lowest female representation in this corpus. Board 3/10 female (30%).
+
+Material issues (8 items): Health & Safety risk; Circularity/Sustainable Material Innovation (opportunity); Sustainable Products (opportunity); Energy Management & Efficiency (opportunity); GHG Emissions as risk (carbon-intensive sector); Sustainable Supply Chain (opportunity); Customer Centricity (opportunity); Technology Transformation (opportunity).
+
+Key quantified targets: Scope 1 GHG reduction 27% by 2032 vs 2017 baseline; Scope 2 GHG reduction 69% by 2032 vs 2017 baseline -- both validated by Science Based Targets initiative (SBTi). ISO 45001:2018, ISO 14001:2015, ISO 50001, SA 8000, UNGC. Turnover INR 69,809.53 crore. Net zero by 2050 goal stated.
+
+Specificity note: The GHG targets are highly specific (named baseline year 2017, horizon year 2032, exact percentages, SBTi validation). This is among the more credible disclosures in the corpus for the emission-reduction domain. However, the material issues section for Social topics is almost entirely unquantified (e.g., "Health & Safety Risk -- the Company places great importance" with no linked metric or incident rate).
