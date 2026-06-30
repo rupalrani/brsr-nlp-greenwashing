@@ -1,0 +1,10 @@
+SOURCE: State Bank of India, Business Responsibility and Sustainability Report
+URL: https://sbi.bank.in/corporate/SBIAR2324/pdf/business-responsibility-and-sustainability-report.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Banking & Finance | FISCAL YEAR: FY2023-24
+EXTRACTION NOTE: SBI's BRSR is embedded in its Annual Report; the dedicated BRSR section is brief (one page in the main AR), pointing to its hosted Sustainability Report for full ESG data. Key facts are from both the BRSR page and the separately published Sustainability Report for FY2023-24.
+
+India's largest public sector bank by total assets. Business Responsibility reporting since FY2013. SEBI BRSR mandate (top 1000 by market cap). The bank notes that entities publishing Sustainability Reports based on international frameworks satisfy BRSR by providing a mapping. SBI provides BRSR + Sustainability Report (GRI-based).
+
+From SBI Sustainability Report FY2023-24 (indexed): The bank aims for Net Zero Scope 1, 2, and 3 emissions with a pathway to net zero carbon emissions. A green loan of USD 100 million was sanctioned to a PSU in FY24 to set up a green project. Renewable Energy Financing Projects are tracked. A dedicated 'PM Surya Ghar' initiative was referenced in the context of financing green initiatives. Outstanding Sustainable Finance portfolio growing. ESG contact: dgm2.esgcfu@sbi.co.in.
+
+Sector framing: SBI's BRSR centres heavily on financed emissions and lending-side ESG, which makes direct comparison with manufacturing-sector reports methodologically problematic. The project scores this report separately and flags it as "indirect-emissions-dominant" in the analysis.
