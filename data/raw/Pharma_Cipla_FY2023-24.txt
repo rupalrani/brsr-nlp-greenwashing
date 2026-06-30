@@ -1,0 +1,13 @@
+SOURCE: Cipla Limited, Business Responsibility and Sustainability Report
+URL: https://nsearchives.nseindia.com/corporate/CIPLA_26072024213241_CiplaBRSRFY202324signed.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: Pharmaceuticals | FISCAL YEAR: FY2023-24
+
+CIN L24239MH1935PLC002380. Reporting boundary: see About this Report (consolidated). Assurance: DNV Business Assurance India Private Limited (Reasonable for BRSR Core; Limited for other selected indicators) + SGGS & Associates for human rights policies. Business: Manufacturing of pharmaceuticals (59.29%) + Wholesale trading (38.53%). 28 states nationally, 77 countries internationally. Exports: 37.75% standalone. Board: 2/11 female (18.18%). Turnover INR 18,057.40 crore standalone.
+
+Manufacturing: 38 plants (domestic) + 8 international. 46 sites total with ISO 45001 at 38 sites, ISO 14001 at 38 sites, ISO 50001 at 25 sites globally -- notable specificity in terms of coverage percentage.
+
+Grievance data (high transparency): Customers: 6,179 complaints FY24 (1,111 pending); Value Chain: 474 (91 pending); Healthcare Professionals: 383 (55 pending). This level of detail is distinctive compared to IT and Banking sectors, which report zero or low customer complaints.
+
+Material issues: referred to the Materiality Assessment section of the Integrated Report (not embedded in BRSR -- reduces specificity within this document). ESG oversight: Investment and Risk Management Committee (IRMC) of the Board.
+
+Specificity note: The site-level certification coverage data (38/46 sites for ISO 45001; 25/46 for ISO 50001) is concrete and verifiable. The grievance data is the most transparent and high-volume in the corpus. However, the material issues table is omitted from the BRSR itself (cross-referenced to the Integrated Report), which reduces in-document specificity.
