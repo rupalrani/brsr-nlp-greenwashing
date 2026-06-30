@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# Data — raw corpus files ARE committed (they are structured text, not sensitive data)
+# Processed intermediates are NOT committed
+data/processed/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Large model weights (FinBERT downloads to cache — never commit)
+*.bin
+*.safetensors
+transformers_cache/
+huggingface/
+
+# Outputs — keep CSVs and final workbook; exclude large intermediate files
+outputs/*.log
