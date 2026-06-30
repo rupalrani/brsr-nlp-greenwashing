@@ -1,0 +1,9 @@
+SOURCE: Tata Consultancy Services Ltd (TCS), Business Responsibility and Sustainability Report
+URL: https://nsearchives.nseindia.com/corporate/TCS_09052024004459_SEIntBRSRsigned.pdf
+ACCESS DATE: 2026-06-21 | SECTOR: IT Services | FISCAL YEAR: FY2023-24
+METHOD NOTE: Facts and figures below are taken directly from the filing; descriptive language is paraphrased in the project author's own words rather than quoted at length, consistent with the project's copyright policy (short quotes only, max one per source).
+
+TCS was the first Indian company to publish a BRSR, in May 2022. Total workforce 631,858 employees (none classified as "workers"); exports were 94.4% of turnover. R&D spend was 1.1% of turnover (Rs 2,751 crore), partly directed at internal energy-monitoring tools the company also sells commercially. The company reports zero fines, penalties, or corruption-related disciplinary actions in FY2023-24.
+Specific, dated targets disclosed: a 70% reduction in absolute Scope 1+2 emissions versus a 2016 baseline, with a net-zero goal by 2030; an 80% reduction already achieved from the 2016 baseline as of FY2023-24, with renewable electricity at 74% of usage that year.
+The leadership statement (COO & ED N G Subramaniam) frames ESG as embedded in core strategy rather than an add-on; the company describes its sustainability programme as "an ongoing aspiration" that "go[es] beyond compliance" (quoted phrase, fewer than 15 words).
+Specificity signal: this report scores relatively high on concreteness -- most claims are paired with a percentage, a year, or a named baseline (e.g. "70% Reduction... vs base year 2016, Net zero by 2030"), rather than open-ended aspirational language alone.
