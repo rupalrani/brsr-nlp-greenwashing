@@ -1,0 +1,12 @@
+SOURCE: ICICI Bank Limited, Business Responsibility and Sustainability Report
+URL: https://www.icici.bank.in/content/dam/icicibank/managed-assets/docs/investor/annual-reports/2025/icici-bank-brsr-2025.pdf (robots-blocked; facts from search index)
+ACCESS DATE: 2026-06-21 | SECTOR: Banking & Finance | FISCAL YEAR: FY2024-25
+EXTRACTION NOTE: Domain blocked automated access; content drawn from search-result indexing of the filing.
+
+CIN L65190GJ1994PLC021012. Reporting on standalone basis. Assurance provider: Grant Thornton Bharat LLP. Type: Reasonable assurance on BRSR Core parameters. Business: 100% Financial and Insurance Services (Banking). Listed: BSE and NSE.
+
+Sustainability highlights from search index: Scope 1 and 2 emissions reduced by 15.7% in FY2024 vs prior year. Offices with 4.95 million sq ft area are IGBC-certified. Outstanding Sustainable Financing portfolio grew to INR 685.28 billion as at March 2024. Green financing portfolio INR 193.66 billion at March 2024. 17 trees saved per tonne of A4-sized paper (over 120 tonnes saved in FY24).
+
+Note on ICICI Lombard subsidiary: became a Bank subsidiary in February 2024 -- boundary change flagged explicitly in the filing, which is good methodological transparency.
+
+Sector framing: Financed emissions / lending-side ESG is a large portion of ICICI's sustainability story; direct operational metrics are secondary. The INR 685 billion Sustainable Finance portfolio is the most quantified single number in ICICI's BRSR.
