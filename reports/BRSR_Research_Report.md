@@ -1,7 +1,7 @@
 # Greenwashing Risk Detection in Indian BRSR Disclosures: A Multi-Sector NLP Analysis (FY2022–25)
 
-**Author:** [Your Name]  
-**Affiliation:** [Your Institution / Independent Researcher]  
+**Author:** [Rupal Rani]  
+**Affiliation:** [Independent Researcher]  
 **Date:** June 2026  
 **Keywords:** greenwashing, BRSR, ESG disclosure, NLP, India, SEBI, specificity, FinBERT, LDA  
 **Data & Code:** https://github.com/rupalrani/brsr-nlp-greenwashing  
